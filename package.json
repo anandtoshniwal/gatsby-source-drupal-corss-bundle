@@ -1,0 +1,33 @@
+{
+  "name": "gatsby-source-drupal-cross-bundle",
+  "version": "0.0.1",
+  "description": "Gatsby source plugin for building websites using the Drupal JSON:API Cross Bundles as a data source",
+  "main": "gatsby-node.js",
+  "author": "Anand Toshniwal <anand.toshniwal1993@gmail.com>",
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "axios": "^0.19.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.19.0",
+    "gatsby-source-filesystem": "^2.1.6",
+    "lodash": "^4.17.14",
+    "tiny-async-pool": "^1.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "babel-preset-gatsby-package": "^0.2.2",
+    "cross-env": "^5.1.4"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin",
+    "cross-bundle",
+    "drupal"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "gatsby": "^2.0.15"
+  }
+}
