@@ -2,8 +2,7 @@
 
 Source plugin for pulling data (including images) into Gatsby from Drupal sites.
 
-Pulls data from Drupal 8 sites with the
-[Drupal JSONAPI](https://www.drupal.org/project/jsonapi) and [JSON:API Cross Bundles](https://www.drupal.org/project/jsonapi_cross_bundles) modules installed.
+pulls data provided by [JSON:API Cross Bundles modules](https://www.drupal.org/project/jsonapi_cross_bundles)  
 
 `apiBase` Option allows changing the API entry point depending on the version of
 jsonapi used by your Drupal instance. The default value is `jsonapi`, which has
