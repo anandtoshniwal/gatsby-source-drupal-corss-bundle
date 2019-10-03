@@ -1,12 +1,9 @@
 # gatsby-source-drupal-cross-bundle
 
-Source plugin for pulling data (including images) into Gatsby from Drupal sites.
-
-pulls data provided by [JSON:API Cross Bundles modules](https://www.drupal.org/project/jsonapi_cross_bundles)  
+source plugin for pulling data provided by [JSON:API Cross Bundles modules](https://www.drupal.org/project/jsonapi_cross_bundles). This module provides all the bundles data under it's entity type Which will helps to build listing pages more easily and smiplifies more other queries where data required from more than one resource.
 
 `apiBase` Option allows changing the API entry point depending on the version of
-jsonapi used by your Drupal instance. The default value is `jsonapi`, which has
-been used since jsonapi version `8.x-1.0-alpha4`.
+jsonapi used by your Drupal instance. The default value is `jsonapi`, which has been used since jsonapi version `8.x-1.0-alpha4`.
 
 ## Install
 
