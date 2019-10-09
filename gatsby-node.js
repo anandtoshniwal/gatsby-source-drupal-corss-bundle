@@ -19,14 +19,21 @@ const asyncPool = require(`tiny-async-pool`);
 
 const bodyParser = require(`body-parser`);
 
+// Checking if gatsby-source-drupal is installed or not.
+let gatsbySourceDrupal = false;
+try {
+  require.resolve("gatsby-source-drupal");
+} catch(e) {
+  if (e.code === 'MODULE_NOT_FOUND') gatsbySourceDrupal = true;
+}
+
 exports.sourceNodes = async ({
   actions,
   store,
   cache,
   createNodeId,
   createContentDigest,
-  reporter,
-  getNodesByType
+  reporter
 }, pluginOptions) => {
   let {
     baseUrl,
@@ -69,10 +76,13 @@ exports.sourceNodes = async ({
   });
 
   const allData = await Promise.all(_.map(data.data.links, async (url, type) => {
-
     if (type === `self`) return;
     if (!url) return;
     if (!type) return;
+    
+    if( url.href != `${baseUrl}${apiBase}/user/user` || !gatsbySourceDrupal) {
+      if (new URL(url.href).pathname.split('/').length != 3) return;
+    }
 
     const getNext = async (url, data = []) => {
       if (typeof url === `object`) {
@@ -138,14 +148,18 @@ exports.sourceNodes = async ({
       // if yes then checking that parent type and current node type has different id
       // assumption all the content type has same parent type and type with each content is same
       // if that differs then assign the parent type to content.. we can't create the same type
+      if(datum.type == 'user--user' || !gatsbySourceDrupal) {
+        const node = nodeFromData(datum, createNodeId);
+        nodes.set(node.id, node);
+      }
       if(datum.type != contentType.type ) {
+          datum.drupal_type = `cross_bundle--${datum.type}`
           datum.type = contentType.type
           const node = nodeFromData(datum, createNodeId);
           nodes.set(node.id, node);
       }
     });
   }); // second pass - handle relationships and back references
-
 
   nodes.forEach(node => {
     handleReferences(node, {
