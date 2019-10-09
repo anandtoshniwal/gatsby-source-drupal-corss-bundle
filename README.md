@@ -5,7 +5,7 @@ source plugin for pulling data provided by [JSON:API Cross Bundles modules](http
 `apiBase` Option allows changing the API entry point depending on the version of
 jsonapi used by your Drupal instance. The default value is `jsonapi`, which has been used since jsonapi version `8.x-1.0-alpha4`.
 
-## Install
+## Installing gatsby-source-drupal-cross-bundle
 
 `npm install --save gatsby-source-drupal-cross-bundle`
 
@@ -18,10 +18,21 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal-cross-bundle`,
       options: {
-        baseUrl: `http://commerce.local`,
+        baseUrl: `http://example.com/`, //example baseUrl
         apiBase: `api`, // optional, defaults to `jsonapi`
       },
     },
   ],
+}
+```
+## How to query it
+```graphql
+{
+  allNodeNode {
+    nodes {
+      title
+      drupal_type
+    }
+  }
 }
 ```

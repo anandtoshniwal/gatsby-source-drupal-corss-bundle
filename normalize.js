@@ -28,6 +28,7 @@ const nodeFromData = (datum, createNodeId) => {
     // It's given that we should use the drupal_id to get the common id on drupal and gatsby
     id: createNodeId(`cross-bundle-${datum.id}`),
     drupal_id: datum.id,
+    drupal_type: datum.drupal_type,
     parent: null,
     drupal_parent_menu_item: attributes.parent,
     children: []

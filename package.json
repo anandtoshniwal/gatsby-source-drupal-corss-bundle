@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-drupal-cross-bundle",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Gatsby source plugin for building websites using the Drupal JSON:API Cross Bundles as a data source",
   "main": "gatsby-node.js",
   "author": "Anand Toshniwal <anand.toshniwal1993@gmail.com>",
