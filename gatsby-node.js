@@ -80,7 +80,7 @@ exports.sourceNodes = async ({
     if (!url) return;
     if (!type) return;
     
-    if( url.href != `${baseUrl}${apiBase}/user/user` || !gatsbySourceDrupal) {
+    if( (url.href != `${baseUrl}${apiBase}/user/user` && url.href != `${baseUrl}${apiBase}/file/file`)  || !gatsbySourceDrupal) {
       if (new URL(url.href).pathname.split('/').length != 3) return;
     }
 
@@ -148,7 +148,7 @@ exports.sourceNodes = async ({
       // if yes then checking that parent type and current node type has different id
       // assumption all the content type has same parent type and type with each content is same
       // if that differs then assign the parent type to content.. we can't create the same type
-      if(datum.type == 'user--user' || !gatsbySourceDrupal) {
+      if(datum.type == 'user--user' || 'file--file' || !gatsbySourceDrupal) {
         const node = nodeFromData(datum, createNodeId);
         nodes.set(node.id, node);
       }
@@ -170,7 +170,6 @@ exports.sourceNodes = async ({
   reporter.info(`Downloading remote files from Drupal`); // Download all files (await for each pool to complete to fix concurrency issues)
 
   const fileNodes = [...nodes.values()].filter(isFileNode);
-
   if (fileNodes.length) {
     const downloadingFilesActivity = reporter.activityTimer(`Remote file download`);
     downloadingFilesActivity.start();
