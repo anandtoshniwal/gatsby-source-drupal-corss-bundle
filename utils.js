@@ -26,7 +26,7 @@ const handleReferences = (node, {
 
       if (_.isArray(v.data)) {
         relationships[nodeFieldName] = _.compact(v.data.map(data => {
-          const referencedNodeId = createNodeId(data.id);
+          const referencedNodeId = createNodeId(`cross-bundle-${data.id}`);
 
           if (!getNode(referencedNodeId)) {
             return null;
@@ -45,7 +45,7 @@ const handleReferences = (node, {
           node[k] = meta;
         }
       } else {
-        const referencedNodeId = createNodeId(v.data.id);
+        const referencedNodeId = createNodeId(`cross-bundle-${v.data.id}`);
 
         if (getNode(referencedNodeId)) {
           relationships[nodeFieldName] = referencedNodeId;
